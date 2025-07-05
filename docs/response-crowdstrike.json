@@ -1,0 +1,717 @@
+[
+  {
+    "_id": "e64d9e3eb9f24f44818240d7f9ad4ebc",
+    "device_id": "e64d9e3eb9f24f44818240d7f9ad4ebc",
+    "cid": "039b8503f1f44628b8fa96d590d96896",
+    "agent_load_flags": "0",
+    "agent_local_time": "2023-02-27T23:46:02.792Z",
+    "agent_version": "6.50.14713.0",
+    "bios_manufacturer": "Xen",
+    "bios_version": "4.11.amazon",
+    "config_id_base": "65994763",
+    "config_id_build": "14713",
+    "config_id_platform": "8",
+    "cpu_signature": "198386",
+    "external_ip": "52.201.231.187",
+    "mac_address": "12-5e-2e-db-58-99",
+    "instance_id": "i-086fc5a571e41b095",
+    "service_provider": "AWS_EC2_V2",
+    "service_provider_account_id": "534968039550",
+    "hostname": "ip-172-31-93-76.ec2.internal",
+    "first_seen": "2022-09-22T22:35:56Z",
+    "last_seen": "2023-03-16T13:34:47Z",
+    "local_ip": "172.31.93.76",
+    "major_version": "5",
+    "minor_version": "10",
+    "os_version": "Amazon Linux 2",
+    "platform_id": "3",
+    "platform_name": "Linux",
+    "policies": [
+      {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:37:11.874047241Z",
+        "applied_date": "2022-09-22T22:37:44.906818295Z",
+        "rule_groups": []
+      }
+    ],
+    "reduced_functionality_mode": "no",
+    "device_policies": {
+      "prevention": {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:37:11.874047241Z",
+        "applied_date": "2022-09-22T22:37:44.906818295Z",
+        "rule_groups": []
+      },
+      "sensor_update": {
+        "policy_type": "sensor-update",
+        "policy_id": "ff994ba250164e3f9e91c090bc08c88c",
+        "applied": true,
+        "settings_hash": "tagged|5;",
+        "assigned_date": "2023-02-27T23:43:59.293761339Z",
+        "applied_date": "2023-02-27T23:47:41.463776945Z",
+        "uninstall_protection": "UNKNOWN"
+      },
+      "global_config": {
+        "policy_type": "globalconfig",
+        "policy_id": "cc4747a0a00a4d19a91df8eb15230727",
+        "applied": true,
+        "settings_hash": "7b023c26",
+        "assigned_date": "2023-03-02T23:21:07.034869871Z",
+        "applied_date": "2023-03-02T23:23:33.391024246Z"
+      },
+      "remote_response": {
+        "policy_type": "remote-response",
+        "policy_id": "9957f814e0c44a57acb73677025d7dd8",
+        "applied": true,
+        "settings_hash": "17550b92",
+        "assigned_date": "2022-09-22T22:37:11.874019305Z",
+        "applied_date": "2022-09-22T22:37:44.938181904Z"
+      }
+    },
+    "groups": [],
+    "group_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "product_type_desc": "Server",
+    "provision_status": "NotProvisioned",
+    "serial_number": "ec26e6cb-2f47-bf3a-41e3-e75f58b6fc2f",
+    "status": "normal",
+    "system_manufacturer": "Xen",
+    "system_product_name": "HVM domU",
+    "tags": [],
+    "modified_timestamp": {
+      "$date": "2023-03-16T13:34:51.000Z"
+    },
+    "meta": {
+      "version": "19208",
+      "version_string": "2:7830577088"
+    },
+    "zone_group": "us-east-1b",
+    "kernel_version": "5.10.130-118.517.amzn2.x86_64",
+    "chassis_type": "1",
+    "chassis_type_desc": "Other",
+    "connection_ip": "172.31.93.76",
+    "default_gateway_ip": "172.31.80.1",
+    "connection_mac_address": "12-5e-2e-db-58-99",
+    "source": "crowdstrike"
+  },
+  {
+    "_id": "924adf156a6540b9a7447c9c5842ff62",
+    "device_id": "924adf156a6540b9a7447c9c5842ff62",
+    "cid": "039b8503f1f44628b8fa96d590d96896",
+    "agent_load_flags": "0",
+    "agent_local_time": "2023-01-10T00:04:22.574Z",
+    "agent_version": "6.49.14604.0",
+    "bios_manufacturer": "Xen",
+    "bios_version": "4.2.amazon",
+    "config_id_base": "65994763",
+    "config_id_build": "14604",
+    "config_id_platform": "8",
+    "cpu_signature": "263921",
+    "external_ip": "3.237.183.51",
+    "mac_address": "02-cd-09-69-8d-21",
+    "instance_id": "i-0cd2bfdc02f0d9aed",
+    "service_provider": "AWS_EC2_V2",
+    "service_provider_account_id": "534968039550",
+    "hostname": "ip-172-31-14-41.ec2.internal",
+    "first_seen": "2022-09-22T22:19:39Z",
+    "last_seen": "2023-02-07T20:46:58Z",
+    "local_ip": "172.31.14.41",
+    "major_version": "5",
+    "minor_version": "10",
+    "os_version": "Amazon Linux 2",
+    "platform_id": "3",
+    "platform_name": "Linux",
+    "policies": [
+      {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:21:36.011218394Z",
+        "applied_date": "2022-09-22T22:21:37.913413035Z",
+        "rule_groups": []
+      }
+    ],
+    "reduced_functionality_mode": "no",
+    "device_policies": {
+      "prevention": {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:21:36.011218394Z",
+        "applied_date": "2022-09-22T22:21:37.913413035Z",
+        "rule_groups": []
+      },
+      "sensor_update": {
+        "policy_type": "sensor-update",
+        "policy_id": "ff994ba250164e3f9e91c090bc08c88c",
+        "applied": true,
+        "settings_hash": "tagged|5;",
+        "assigned_date": "2023-02-03T00:39:39.615599523Z",
+        "applied_date": "2023-02-03T00:40:02.050264549Z",
+        "uninstall_protection": "UNKNOWN"
+      },
+      "global_config": {
+        "policy_type": "globalconfig",
+        "policy_id": "cc4747a0a00a4d19a91df8eb15230727",
+        "applied": true,
+        "settings_hash": "96baf4dc",
+        "assigned_date": "2023-01-19T15:55:04.519299806Z",
+        "applied_date": "2023-01-19T15:57:27.715618109Z"
+      },
+      "remote_response": {
+        "policy_type": "remote-response",
+        "policy_id": "9957f814e0c44a57acb73677025d7dd8",
+        "applied": true,
+        "settings_hash": "17550b92",
+        "assigned_date": "2022-09-22T22:21:36.011223835Z",
+        "applied_date": "2022-09-22T22:21:37.896785385Z"
+      }
+    },
+    "groups": [],
+    "group_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "product_type_desc": "Server",
+    "provision_status": "NotProvisioned",
+    "serial_number": "ec2115ba-6773-1777-e93e-e385e0866ed1",
+    "status": "normal",
+    "system_manufacturer": "Xen",
+    "system_product_name": "HVM domU",
+    "tags": [],
+    "modified_timestamp": {
+      "$date": "2023-02-07T20:47:04.000Z"
+    },
+    "meta": {
+      "version": "15167",
+      "version_string": "3:4659134887"
+    },
+    "zone_group": "us-east-1a",
+    "kernel_version": "5.10.109-104.500.amzn2.x86_64",
+    "connection_ip": "172.31.14.41",
+    "default_gateway_ip": "172.31.0.1",
+    "connection_mac_address": "02-cd-09-69-8d-21",
+    "source": "crowdstrike"
+  },
+  {
+    "_id": "d670f1b6abae4ba2a0c80ad949970264",
+    "device_id": "d670f1b6abae4ba2a0c80ad949970264",
+    "cid": "039b8503f1f44628b8fa96d590d96896",
+    "agent_load_flags": "0",
+    "agent_local_time": "2023-02-27T23:46:37.061Z",
+    "agent_version": "6.50.14713.0",
+    "bios_manufacturer": "Xen",
+    "bios_version": "4.2.amazon",
+    "config_id_base": "65994763",
+    "config_id_build": "14713",
+    "config_id_platform": "8",
+    "cpu_signature": "198386",
+    "external_ip": "18.212.216.193",
+    "mac_address": "0a-9a-0e-ba-3f-d9",
+    "instance_id": "i-0f74daf3d7225083a",
+    "service_provider": "AWS_EC2_V2",
+    "service_provider_account_id": "534968039550",
+    "hostname": "ip-172-31-19-223.ec2.internal",
+    "first_seen": "2022-09-22T22:22:28Z",
+    "last_seen": "2023-04-03T07:50:49Z",
+    "local_ip": "172.31.19.223",
+    "major_version": "5",
+    "minor_version": "10",
+    "os_version": "Amazon Linux 2",
+    "platform_id": "3",
+    "platform_name": "Linux",
+    "policies": [
+      {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:23:50.616392239Z",
+        "applied_date": "2022-09-22T22:24:24.679371176Z",
+        "rule_groups": []
+      }
+    ],
+    "reduced_functionality_mode": "no",
+    "device_policies": {
+      "prevention": {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:23:50.616392239Z",
+        "applied_date": "2022-09-22T22:24:24.679371176Z",
+        "rule_groups": []
+      },
+      "sensor_update": {
+        "policy_type": "sensor-update",
+        "policy_id": "ff994ba250164e3f9e91c090bc08c88c",
+        "applied": true,
+        "settings_hash": "tagged|5;",
+        "assigned_date": "2023-02-27T23:44:18.546694427Z",
+        "applied_date": "2023-02-27T23:47:58.670281693Z",
+        "uninstall_protection": "UNKNOWN"
+      },
+      "global_config": {
+        "policy_type": "globalconfig",
+        "policy_id": "cc4747a0a00a4d19a91df8eb15230727",
+        "applied": true,
+        "settings_hash": "7b023c26",
+        "assigned_date": "2023-03-02T23:21:39.524328109Z",
+        "applied_date": "2023-03-02T23:24:11.707234822Z"
+      },
+      "remote_response": {
+        "policy_type": "remote-response",
+        "policy_id": "9957f814e0c44a57acb73677025d7dd8",
+        "applied": true,
+        "settings_hash": "17550b92",
+        "assigned_date": "2022-09-22T22:23:50.616365606Z",
+        "applied_date": "2022-09-22T22:24:24.660923164Z"
+      }
+    },
+    "groups": [
+      "0ec38301649f4f67b65bad809e5874d3"
+    ],
+    "group_hash": "dccd7a742a92f4321b9c63e91d8ead59fb46e9ad337e804c3dd5d089f8c4f24b",
+    "product_type_desc": "Server",
+    "provision_status": "NotProvisioned",
+    "serial_number": "ec2ae369-0aef-2bd5-dfb5-dfca408f0222",
+    "status": "normal",
+    "system_manufacturer": "Xen",
+    "system_product_name": "HVM domU",
+    "tags": [],
+    "modified_timestamp": {
+      "$date": "2023-04-03T07:52:02.000Z"
+    },
+    "meta": {
+      "version": "21027",
+      "version_string": "3:9609981251"
+    },
+    "zone_group": "us-east-1c",
+    "kernel_version": "5.10.135-122.509.amzn2.x86_64",
+    "chassis_type": "1",
+    "chassis_type_desc": "Other",
+    "connection_ip": "172.31.19.223",
+    "default_gateway_ip": "172.31.16.1",
+    "connection_mac_address": "0a-9a-0e-ba-3f-d9",
+    "source": "crowdstrike"
+  },
+  {
+    "_id": "6b9c530bdaa44cb080df9d8b9c8b7c28",
+    "device_id": "6b9c530bdaa44cb080df9d8b9c8b7c28",
+    "cid": "039b8503f1f44628b8fa96d590d96896",
+    "agent_load_flags": "0",
+    "agent_local_time": "2023-02-27T23:45:30.945Z",
+    "agent_version": "6.50.14713.0",
+    "bios_manufacturer": "Xen",
+    "bios_version": "4.11.amazon",
+    "config_id_base": "65994763",
+    "config_id_build": "14713",
+    "config_id_platform": "8",
+    "cpu_signature": "198386",
+    "external_ip": "54.175.33.9",
+    "mac_address": "12-7c-01-82-6b-4f",
+    "instance_id": "i-04d75f5d8db35c016",
+    "service_provider": "AWS_EC2_V2",
+    "service_provider_account_id": "534968039550",
+    "hostname": "ip-172-31-94-229.ec2.internal",
+    "first_seen": "2022-09-22T22:31:51Z",
+    "last_seen": "2023-04-03T07:53:45Z",
+    "local_ip": "172.31.94.229",
+    "major_version": "5",
+    "minor_version": "10",
+    "os_version": "Amazon Linux 2",
+    "platform_id": "3",
+    "platform_name": "Linux",
+    "policies": [
+      {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:33:43.137905366Z",
+        "applied_date": "2022-09-22T22:35:39.683580746Z",
+        "rule_groups": []
+      }
+    ],
+    "reduced_functionality_mode": "no",
+    "device_policies": {
+      "prevention": {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:33:43.137905366Z",
+        "applied_date": "2022-09-22T22:35:39.683580746Z",
+        "rule_groups": []
+      },
+      "sensor_update": {
+        "policy_type": "sensor-update",
+        "policy_id": "ff994ba250164e3f9e91c090bc08c88c",
+        "applied": true,
+        "settings_hash": "tagged|5;",
+        "assigned_date": "2023-02-27T23:42:54.303143666Z",
+        "applied_date": "2023-02-27T23:46:36.797400069Z",
+        "uninstall_protection": "UNKNOWN"
+      },
+      "global_config": {
+        "policy_type": "globalconfig",
+        "policy_id": "cc4747a0a00a4d19a91df8eb15230727",
+        "applied": true,
+        "settings_hash": "7b023c26",
+        "assigned_date": "2023-03-02T23:26:48.115676964Z",
+        "applied_date": "2023-03-02T23:28:19.241300166Z"
+      },
+      "remote_response": {
+        "policy_type": "remote-response",
+        "policy_id": "9957f814e0c44a57acb73677025d7dd8",
+        "applied": true,
+        "settings_hash": "17550b92",
+        "assigned_date": "2022-09-22T22:33:43.137892777Z",
+        "applied_date": "2022-09-22T22:35:39.667046309Z"
+      }
+    },
+    "groups": [
+      "0ec38301649f4f67b65bad809e5874d3"
+    ],
+    "group_hash": "dccd7a742a92f4321b9c63e91d8ead59fb46e9ad337e804c3dd5d089f8c4f24b",
+    "product_type_desc": "Server",
+    "provision_status": "NotProvisioned",
+    "serial_number": "ec2e3b32-00c3-63e0-1f28-a677bf85c56f",
+    "status": "normal",
+    "system_manufacturer": "Xen",
+    "system_product_name": "HVM domU",
+    "tags": [],
+    "modified_timestamp": {
+      "$date": "2023-04-03T07:54:46.000Z"
+    },
+    "meta": {
+      "version": "20986",
+      "version_string": "2:9612832917"
+    },
+    "zone_group": "us-east-1b",
+    "kernel_version": "5.10.118-111.515.amzn2.x86_64",
+    "chassis_type": "1",
+    "chassis_type_desc": "Other",
+    "connection_ip": "172.31.94.229",
+    "default_gateway_ip": "172.31.80.1",
+    "connection_mac_address": "12-7c-01-82-6b-4f",
+    "source": "crowdstrike"
+  },
+  {
+    "_id": "e2dbf1b0506e415588b370fb80d7db99",
+    "device_id": "e2dbf1b0506e415588b370fb80d7db99",
+    "cid": "039b8503f1f44628b8fa96d590d96896",
+    "agent_load_flags": "0",
+    "agent_local_time": "2023-02-27T23:46:27.816Z",
+    "agent_version": "6.50.14713.0",
+    "bios_manufacturer": "Xen",
+    "bios_version": "4.2.amazon",
+    "config_id_base": "65994763",
+    "config_id_build": "14713",
+    "config_id_platform": "8",
+    "cpu_signature": "198386",
+    "external_ip": "54.147.184.66",
+    "mac_address": "0a-ef-8a-22-3a-8d",
+    "instance_id": "i-00243621465aa8bd0",
+    "service_provider": "AWS_EC2_V2",
+    "service_provider_account_id": "534968039550",
+    "hostname": "ip-172-31-27-66.ec2.internal",
+    "first_seen": "2022-09-22T22:26:05Z",
+    "last_seen": "2023-04-03T07:57:36Z",
+    "local_ip": "172.31.27.66",
+    "major_version": "5",
+    "minor_version": "10",
+    "os_version": "Amazon Linux 2",
+    "platform_id": "3",
+    "platform_name": "Linux",
+    "policies": [
+      {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:26:24.269276662Z",
+        "applied_date": "2022-09-22T22:27:44.916565254Z",
+        "rule_groups": []
+      }
+    ],
+    "reduced_functionality_mode": "no",
+    "device_policies": {
+      "prevention": {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:26:24.269276662Z",
+        "applied_date": "2022-09-22T22:27:44.916565254Z",
+        "rule_groups": []
+      },
+      "sensor_update": {
+        "policy_type": "sensor-update",
+        "policy_id": "ff994ba250164e3f9e91c090bc08c88c",
+        "applied": true,
+        "settings_hash": "tagged|5;",
+        "assigned_date": "2023-02-27T23:44:18.546697789Z",
+        "applied_date": "2023-02-27T23:47:58.670280923Z",
+        "uninstall_protection": "UNKNOWN"
+      },
+      "global_config": {
+        "policy_type": "globalconfig",
+        "policy_id": "cc4747a0a00a4d19a91df8eb15230727",
+        "applied": true,
+        "settings_hash": "7b023c26",
+        "assigned_date": "2023-03-02T23:21:39.52432639Z",
+        "applied_date": "2023-03-02T23:24:11.707235859Z"
+      },
+      "remote_response": {
+        "policy_type": "remote-response",
+        "policy_id": "9957f814e0c44a57acb73677025d7dd8",
+        "applied": true,
+        "settings_hash": "17550b92",
+        "assigned_date": "2022-09-22T22:26:24.269299155Z",
+        "applied_date": "2022-09-22T22:27:44.898732097Z"
+      }
+    },
+    "groups": [
+      "0ec38301649f4f67b65bad809e5874d3"
+    ],
+    "group_hash": "dccd7a742a92f4321b9c63e91d8ead59fb46e9ad337e804c3dd5d089f8c4f24b",
+    "product_type_desc": "Server",
+    "provision_status": "NotProvisioned",
+    "serial_number": "ec2b002a-2e11-3bd5-b576-3aa240f82513",
+    "status": "normal",
+    "system_manufacturer": "Xen",
+    "system_product_name": "HVM domU",
+    "tags": [],
+    "modified_timestamp": {
+      "$date": "2023-04-03T07:57:52.000Z"
+    },
+    "meta": {
+      "version": "21018",
+      "version_string": "3:9610380031"
+    },
+    "zone_group": "us-east-1c",
+    "kernel_version": "5.10.130-118.517.amzn2.x86_64",
+    "chassis_type": "1",
+    "chassis_type_desc": "Other",
+    "connection_ip": "172.31.27.66",
+    "default_gateway_ip": "172.31.16.1",
+    "connection_mac_address": "0a-ef-8a-22-3a-8d",
+    "source": "crowdstrike"
+  },
+  {
+    "_id": "100900110d1442989a7f40f363b3bca6",
+    "device_id": "100900110d1442989a7f40f363b3bca6",
+    "cid": "039b8503f1f44628b8fa96d590d96896",
+    "agent_load_flags": "0",
+    "agent_local_time": "2023-02-27T23:46:36.363Z",
+    "agent_version": "6.50.14713.0",
+    "bios_manufacturer": "Xen",
+    "bios_version": "4.2.amazon",
+    "config_id_base": "65994763",
+    "config_id_build": "14713",
+    "config_id_platform": "8",
+    "cpu_signature": "263921",
+    "external_ip": "54.237.28.30",
+    "mac_address": "06-d5-ae-47-27-73",
+    "instance_id": "i-0f7b47bb35e801dcd",
+    "service_provider": "AWS_EC2_V2",
+    "service_provider_account_id": "534968039550",
+    "hostname": "ip-172-31-60-172.ec2.internal",
+    "first_seen": "2022-09-22T22:13:39Z",
+    "last_seen": "2023-04-03T07:55:48Z",
+    "local_ip": "172.31.60.172",
+    "major_version": "5",
+    "minor_version": "15",
+    "os_version": "Amazon Linux 2",
+    "platform_id": "3",
+    "platform_name": "Linux",
+    "policies": [
+      {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:14:48.185769067Z",
+        "applied_date": "2022-09-22T22:14:49.914251428Z",
+        "rule_groups": []
+      }
+    ],
+    "reduced_functionality_mode": "no",
+    "device_policies": {
+      "prevention": {
+        "policy_type": "prevention",
+        "policy_id": "6be7b21acc6d4727a51b0566b2641c85",
+        "applied": true,
+        "settings_hash": "d4cbb29",
+        "assigned_date": "2022-09-22T22:14:48.185769067Z",
+        "applied_date": "2022-09-22T22:14:49.914251428Z",
+        "rule_groups": []
+      },
+      "sensor_update": {
+        "policy_type": "sensor-update",
+        "policy_id": "ff994ba250164e3f9e91c090bc08c88c",
+        "applied": true,
+        "settings_hash": "tagged|5;",
+        "assigned_date": "2023-02-27T23:43:59.293764443Z",
+        "applied_date": "2023-02-27T23:47:41.463776267Z",
+        "uninstall_protection": "UNKNOWN"
+      },
+      "global_config": {
+        "policy_type": "globalconfig",
+        "policy_id": "cc4747a0a00a4d19a91df8eb15230727",
+        "applied": true,
+        "settings_hash": "7b023c26",
+        "assigned_date": "2023-03-02T23:21:07.034868394Z",
+        "applied_date": "2023-03-02T23:23:33.391023392Z"
+      },
+      "remote_response": {
+        "policy_type": "remote-response",
+        "policy_id": "9957f814e0c44a57acb73677025d7dd8",
+        "applied": true,
+        "settings_hash": "17550b92",
+        "assigned_date": "2022-09-22T22:14:48.185788954Z",
+        "applied_date": "2022-09-22T22:14:49.958871707Z"
+      }
+    },
+    "groups": [
+      "0ec38301649f4f67b65bad809e5874d3"
+    ],
+    "group_hash": "dccd7a742a92f4321b9c63e91d8ead59fb46e9ad337e804c3dd5d089f8c4f24b",
+    "product_type_desc": "Server",
+    "provision_status": "NotProvisioned",
+    "serial_number": "ec232658-688f-0705-8c24-0c0d877d9855",
+    "status": "normal",
+    "system_manufacturer": "Xen",
+    "system_product_name": "HVM domU",
+    "tags": [],
+    "modified_timestamp": {
+      "$date": "2023-04-03T07:56:32.000Z"
+    },
+    "meta": {
+      "version": "21115",
+      "version_string": "3:9610286483"
+    },
+    "zone_group": "us-east-1e",
+    "kernel_version": "5.15.54-25.126.amzn2.x86_64",
+    "chassis_type": "1",
+    "chassis_type_desc": "Other",
+    "connection_ip": "172.31.60.172",
+    "default_gateway_ip": "172.31.48.1",
+    "connection_mac_address": "06-d5-ae-47-27-73",
+    "source": "crowdstrike"
+  },
+  {
+    "_id": "3023b0ecd1444cf3b0b0958cb437964c",
+    "device_id": "3023b0ecd1444cf3b0b0958cb437964c",
+    "cid": "039b8503f1f44628b8fa96d590d96896",
+    "agent_load_flags": "0",
+    "agent_local_time": "2023-04-02T14:00:23.383Z",
+    "agent_version": "6.51.16403.0",
+    "config_id_base": "65994763",
+    "config_id_build": "16403",
+    "config_id_platform": "4",
+    "cpu_signature": "4294967295",
+    "external_ip": "98.109.97.138",
+    "mac_address": "a0-78-17-89-1a-fa",
+    "hostname": "yoavs-mbp-2.lan",
+    "first_seen": "2023-03-28T14:56:10Z",
+    "last_seen": "2023-04-03T07:17:35Z",
+    "local_ip": "192.168.86.151",
+    "major_version": "22",
+    "minor_version": "4",
+    "os_version": "Ventura (13)",
+    "os_build": "22E252",
+    "platform_id": "1",
+    "platform_name": "Mac",
+    "policies": [
+      {
+        "policy_type": "prevention",
+        "policy_id": "b1639dacf6c243a9a5929ea6351f0957",
+        "applied": true,
+        "settings_hash": "ec4c535b",
+        "assigned_date": "2023-03-28T14:57:45.521894846Z",
+        "applied_date": "2023-03-28T14:57:51.465280957Z",
+        "rule_groups": []
+      }
+    ],
+    "reduced_functionality_mode": "no",
+    "device_policies": {
+      "prevention": {
+        "policy_type": "prevention",
+        "policy_id": "b1639dacf6c243a9a5929ea6351f0957",
+        "applied": true,
+        "settings_hash": "ec4c535b",
+        "assigned_date": "2023-03-28T14:57:45.521894846Z",
+        "applied_date": "2023-03-28T14:57:51.465280957Z",
+        "rule_groups": []
+      },
+      "sensor_update": {
+        "policy_type": "sensor-update",
+        "policy_id": "3dce179ca0e64216a714fd7b69f234a5",
+        "applied": true,
+        "settings_hash": "tagged|3;101",
+        "assigned_date": "2023-03-28T14:57:45.521903958Z",
+        "applied_date": "2023-03-28T15:00:16.492501127Z",
+        "uninstall_protection": "ENABLED"
+      },
+      "device_control": {
+        "policy_type": "device-control",
+        "policy_id": "438f94618f164ca7aa3ee51990f5b261",
+        "applied": true,
+        "assigned_date": "2023-03-28T15:04:41.485596839Z",
+        "applied_date": "2023-03-28T15:06:26.705694581Z"
+      },
+      "global_config": {
+        "policy_type": "globalconfig",
+        "policy_id": "2a9ad4ef503941e7ad64888eff224377",
+        "applied": true,
+        "settings_hash": "21a61845",
+        "assigned_date": "2023-04-02T14:00:24.329458407Z",
+        "applied_date": "2023-04-02T14:01:54.627681232Z"
+      },
+      "remote_response": {
+        "policy_type": "remote-response",
+        "policy_id": "31d55f8bcf26421c87cfc40c35313fbd",
+        "applied": true,
+        "settings_hash": "17550b92",
+        "assigned_date": "2023-03-28T14:57:45.521918184Z",
+        "applied_date": "2023-03-28T14:57:51.727150391Z"
+      },
+      "firewall": {
+        "policy_type": "firewall",
+        "policy_id": "6e92f26629e0461cbc219517cfd6090a",
+        "applied": true,
+        "assigned_date": "2023-03-28T19:34:52.149474396Z",
+        "applied_date": "2023-03-28T19:39:14.44952116Z",
+        "rule_set_id": "6e92f26629e0461cbc219517cfd6090a"
+      }
+    },
+    "groups": [
+      "cff55b849ffd4967bf8f7269d35c9595"
+    ],
+    "group_hash": "afd15fc6c5848d6cdfd7486cb1668388d1a42c99681a7417306bc996d2084c1f",
+    "product_type_desc": "Workstation",
+    "provision_status": "Provisioned",
+    "serial_number": "C02F60U4Q05N",
+    "status": "normal",
+    "system_manufacturer": "Apple Inc.",
+    "system_product_name": "MacBookPro17,1",
+    "tags": [],
+    "modified_timestamp": {
+      "$date": "2023-04-03T07:17:43.000Z"
+    },
+    "meta": {
+      "version": "720",
+      "version_string": "3:9607628631"
+    },
+    "kernel_version": "22.4.0",
+    "chassis_type": "0",
+    "chassis_type_desc": "Invalid Chassis Type",
+    "source": "crowdstrike"
+  }
+]

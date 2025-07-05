@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:6.0
+        ports: [27017:27017]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install pipenv
+        run: pip install pipenv
+      - name: Install dependencies
+        run: |
+          pipenv install --dev
+          pipenv run pip install -r app/requirements.txt || true
+          pipenv install --dev mypy || true
+      - name: Lint (pylint)
+        run: |
+          pipenv run pylint --rcfile=app/.pylintrc app/ || true
+      - name: Type check (mypy)
+        run: |
+          pipenv run mypy app/
+      - name: Run tests (pipenv)
+        run: |
+          export API_TOKEN=dummy
+          export MONGO_URI=mongodb://mongo:27017
+          PYTHONPATH=app pipenv run pytest -v app/tests/
+
+  docker-test:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:6.0
+        ports: [27017:27017]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker images
+        run: docker compose build
+      - name: Copy .env.example to .env
+        run: cp app/.env.example app/.env
+      - name: Run tests in Docker
+        run: docker compose run --rm app pytest -v tests/

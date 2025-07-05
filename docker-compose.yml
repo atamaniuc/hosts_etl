@@ -1,0 +1,43 @@
+services:
+  app:
+    build: ./app
+    container_name: etl_app
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    env_file:
+      - ./app/.env
+    depends_on:
+      - mongo
+    networks:
+      - my_network
+    tty: true
+    stdin_open: true
+
+  mongo:
+    image: mongo:6
+    container_name: etl_mongo
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - my_network
+
+  mongo-express:
+    image: mongo-express
+    container_name: etl_mongo_express
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+    depends_on:
+      - mongo
+    networks:
+      - my_network
+
+volumes:
+  mongo_data:
+
+networks:
+  my_network:

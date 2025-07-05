@@ -1,0 +1,11 @@
+pymongo
+requests
+matplotlib
+python-dotenv
+pytest
+pytest-cov
+pylint
+black
+mypy
+types-requests
+pydevd_pycharm

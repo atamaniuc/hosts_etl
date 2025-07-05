@@ -1,0 +1,23 @@
+[MASTER]
+# Python code to execute before analysis
+init-hook='import sys; sys.path.append(".")'
+
+[MESSAGES CONTROL]
+# Disable specific warnings
+disable=C0114,C0115,C0116,R0903,R0913,W0621,W0613,C0301
+
+[FORMAT]
+# Maximum number of characters on a single line
+max-line-length=88
+
+[BASIC]
+# Regular expression which should only match function or class names
+good-names=i,j,k,ex,Run,_,id
+
+[SIMILARITIES]
+# Minimum lines number of a similarity
+min-similarity-lines=4
+
+[MISCELLANEOUS]
+# List of note tags to take into consideration
+notes=
