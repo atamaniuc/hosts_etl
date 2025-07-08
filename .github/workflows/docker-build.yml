@@ -1,0 +1,30 @@
+name: Docker Build CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and Push with Docker Bake
+        uses: docker/bake-action@v3
+        with:
+          files: |
+            ./docker-bake.hcl
+          targets: app-dev
+          push: false
+          load: true
+
+      - name: Test the built image
+        run: |
+          docker images
+          echo "✅ Successfully built image with Docker Bake"

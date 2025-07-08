@@ -13,14 +13,15 @@ help:
 	@echo "🧪 Host Data ETL Pipeline - Available Commands"
 	@echo ""
 	@echo "🏗️  BUILD AND INFRASTRUCTURE:"
-	@echo "  build          - Build the Docker image"
-	@echo "  up             - Start all services in background (MongoDB + App)"
-	@echo "  down           - Stop and remove all containers"
-	@echo "  start          - Start existing containers"
-	@echo "  stop           - Stop running containers"
+	@echo "  build              - Build the Docker image (sequential build)"
+	@echo "  build-parallel     - Build images in parallel using Docker Bake"
+	@echo "  up                 - Start all services in background (MongoDB + App)"
+	@echo "  down               - Stop and remove all containers"
+	@echo "  start              - Start existing containers"
+	@echo "  stop               - Stop running containers"
 	@echo ""
 	@echo "🚀  PIPELINE EXECUTION:"
-	@echo "  install        - Complete setup: request API token, create .env, build, start, and run pipeline"
+	@echo "  install        - Complete setup: request API token, create .env, build (in parallel), start, and run pipeline"
 	@echo "  run            - Run the complete ETL pipeline with hybrid pagination"
 	@echo ""
 	@echo "🧪  TESTING AND QUALITY ASSURANCE:"
@@ -42,9 +43,18 @@ help:
 
 # 🏗️ Build and Infrastructure Commands
 
-## Build the Docker image
+## Build the Docker image (sequential build)
 build:
 	docker compose build
+
+## Build images in parallel using Docker Bake
+build-parallel:
+	@echo "📋 Printing Docker Bake configuration..."
+	docker buildx bake --print
+	@echo "\n🚀 Starting parallel build with Docker Bake..."
+	docker buildx bake --load
+	@echo "\n✅ Build completed - Docker images:"
+	docker images | grep etl_app
 
 ## Start all services in background (MongoDB + App)
 up:
@@ -84,7 +94,7 @@ install:
 	echo "MONGO_URI=mongodb://mongo:27017" >> ./app/.env; \
 	echo "✅ .env file created successfully!"
 	@echo "🏗️ Building Docker image..."
-	@docker compose build
+	make build-parallel
 	@echo "🚀 Starting services..."
 	@docker compose up -d --remove-orphans
 	@echo "⏳ Waiting for services to be ready..."

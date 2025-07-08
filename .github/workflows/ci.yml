@@ -53,10 +53,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      - name: Build Docker images
-        run: docker compose build
       - name: Copy .env.example to .env
         run: cp app/.env.example app/.env
+      - name: Build Docker images with parallel build (Docker Bake)
+        run: docker buildx bake --load
       - name: Run tests in Docker
         run: docker compose run --rm app pytest -v tests/
       - name: Run tests with coverage in Docker

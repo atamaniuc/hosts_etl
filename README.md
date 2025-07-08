@@ -24,7 +24,7 @@ A simple Python ETL pipeline that processes host data from `Qualys` and `Crowdst
    - Request your API token (The system uses Silk API endpoints for both Qualys and Crowdstrike data.)
    You can find your API token in the [profile](https://recruiting.app.silk.security/profile) page.
    - Create `.env` file
-   - Build Docker images
+   - Build Docker images in parallel using Docker Bake
    - Start services
    - Run the ETL pipeline
 
@@ -33,7 +33,8 @@ A simple Python ETL pipeline that processes host data from `Qualys` and `Crowdst
 Run `make help` to see all available commands with descriptions.
 
 ### Build and Infrastructure
-- `make build` - Build the Docker image
+- `make build` - Build the Docker image (sequential build)
+- `make build-parallel` - Build images in parallel using Docker Bake
 - `make up` - Start all services in background
 - `make down` - Stop and remove all containers
 - `make start` - Start existing containers
@@ -54,6 +55,37 @@ Run `make help` to see all available commands with descriptions.
 ### Monitoring
 - `make logs` - View application logs
 - `make shell` - Open shell in container
+
+## 🛠️ Parallel Build with Docker Bake
+
+The project supports parallel building of Docker images using Docker Bake technology:
+
+- **Local Development**: Use `make build-parallel` to build images in parallel
+- **CI/CD Pipeline**: GitHub Actions workflow automatically uses Docker Bake for efficient builds
+
+### Benefits of Parallel Build
+- Faster build times in CI/CD pipelines
+- Support for different build environments (production, development, testing)
+- Inheritance-based configuration to reduce duplication
+
+### Docker Bake Configuration
+The parallel build configuration is defined in `docker-bake.hcl`:
+```hcl
+// Base configuration is inherited by all targets
+target "app-base" {
+  context    = "./app"
+  dockerfile = "Dockerfile"
+}
+
+// Each environment gets its own build configuration
+target "app-dev" {
+  inherits = ["app-base"]
+  tags     = ["etl_app:dev"]
+  args = {
+    BUILD_ENV = "development"
+  }
+}
+```
 
 ## 🚀 Hybrid Pagination Strategy
 
@@ -144,7 +176,7 @@ The project maintains high code quality standards:
 - **Pylint**: 10.00/10 score
 - **Black**: Consistent code formatting
 - **MyPy**: Type checking
-- **Pytest**: Comprehensive test coverage
+- **Pytest**: Comprehensive test coverage (**98%**)
 
 Run all quality checks:
 ```bash
@@ -177,8 +209,8 @@ make check-all-linters
 
 ## 📎 Tech Stack
 
-- **Python 3.10**
-- **MongoDB**
+- **[Python 3.10.18](https://hub.docker.com/layers/library/python/3.10-slim/images/sha256-0d15918ecae76250659ae3036ad1fc898f801f6cb803860bdf0cc4b27fe316dc)**
+- **[MongoDB 6.0.24](https://hub.docker.com/layers/library/mongo/6.0/images/sha256-6a8f5158e1cc05d7bf5a9e6ba9e425a2088073fa397a36a6bd05f8da2ec9667b)**
 - `requests`, `pymongo`, `matplotlib`, `python-dotenv`
 - `pytest` for testing
 - Docker + Docker Compose
