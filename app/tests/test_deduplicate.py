@@ -67,8 +67,8 @@ def test_deduplication_empty_data(mock_logger):
     processor = DeduplicationProcessor()
     result = processor.process([])
 
-    # Проверяем, что результат пуст
+    # Check that result is empty
     assert result == []
 
-    # Проверяем, что был вызван соответствующий лог
+    # Check that appropriate log was called
     mock_logger.info.assert_called_with("📭 No data to deduplicate")

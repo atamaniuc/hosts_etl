@@ -127,19 +127,19 @@ def test_main_exception(
 
 def test_dotenv_loading():
     """Test that environment variables are loaded."""
-    # Патчим load_dotenv с помощью pytest.monkeypatch
+    # Patch load_dotenv using pytest.monkeypatch
     import sys
 
-    # Удаляем main из sys.modules, если он уже импортирован
+    # Remove main from sys.modules if already imported
     if "main" in sys.modules:
         del sys.modules["main"]
 
-    # Патчим load_dotenv прямо в модуле dotenv перед импортом main
+    # Patch load_dotenv directly in dotenv module before importing main
     with patch("dotenv.load_dotenv") as mock_load_dotenv:
-        # Импортируем main заново
+        # Import main again
         import main
 
-        # Проверяем, что load_dotenv был вызван
+        # Check that load_dotenv was called
         mock_load_dotenv.assert_called_once()
 
 

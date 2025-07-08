@@ -24,22 +24,22 @@ class HostNormalizer(BaseProcessor):
         for item in qualys_data:
             normalized.append(
                 {
-                    "source": "qualys",
-                    "hostname": item.get("name") or item.get("hostname"),
-                    "ip": item.get("address") or item.get("ip"),
+                    "source": item.get("source"),
+                    "hostname": item.get("name"),
+                    "ip": item.get("address"),
                     "os": item.get("os"),
-                    "last_seen": item.get("modified") or item.get("lastSeen"),
+                    "last_seen": item.get("modified"),
                 }
             )
 
         for item in crowdstrike_data:
             normalized.append(
                 {
-                    "source": "crowdstrike",
+                    "source": item.get("source"),
                     "hostname": item.get("hostname"),
-                    "ip": item.get("local_ip") or item.get("ip"),
-                    "os": item.get("platform_name") or item.get("os"),
-                    "last_seen": (item.get("last_seen") or item.get("lastSeenDate")),
+                    "ip": item.get("local_ip"),
+                    "os": item.get("platform_name"),
+                    "last_seen": item.get("last_seen"),
                 }
             )
 

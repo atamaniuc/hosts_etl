@@ -10,11 +10,10 @@ A simple Python ETL pipeline that processes host data from `Qualys` and `Crowdst
 
 ### Installation
 
-1. **Clone the repository:**
+1. **Clone the repository from the latest release:**
    ```bash
-   git clone git@github.com:atamaniuc/hosts_etl.git
-   cd armis
-   ```
+   git clone -b v0.0.1 https://github.com/atamaniuc/hosts_etl.git
+   cd hosts_etl
 
 2. **Run the complete setup:**
    ```bash
@@ -27,6 +26,10 @@ A simple Python ETL pipeline that processes host data from `Qualys` and `Crowdst
    - Build Docker images in parallel using Docker Bake
    - Start services
    - Run the ETL pipeline
+
+   ![Install Step 1](docs/install-1.png)
+   ![Install Step 2](docs/install-2.png)
+   ![Install Step 3](docs/install-3.png)
 
 ## 🛠️ Available Commands
 
@@ -55,37 +58,6 @@ Run `make help` to see all available commands with descriptions.
 ### Monitoring
 - `make logs` - View application logs
 - `make shell` - Open shell in container
-
-## 🛠️ Parallel Build with Docker Bake
-
-The project supports parallel building of Docker images using Docker Bake technology:
-
-- **Local Development**: Use `make build-parallel` to build images in parallel
-- **CI/CD Pipeline**: GitHub Actions workflow automatically uses Docker Bake for efficient builds
-
-### Benefits of Parallel Build
-- Faster build times in CI/CD pipelines
-- Support for different build environments (production, development, testing)
-- Inheritance-based configuration to reduce duplication
-
-### Docker Bake Configuration
-The parallel build configuration is defined in `docker-bake.hcl`:
-```hcl
-// Base configuration is inherited by all targets
-target "app-base" {
-  context    = "./app"
-  dockerfile = "Dockerfile"
-}
-
-// Each environment gets its own build configuration
-target "app-dev" {
-  inherits = ["app-base"]
-  tags     = ["etl_app:dev"]
-  args = {
-    BUILD_ENV = "development"
-  }
-}
-```
 
 ## 🚀 Hybrid Pagination Strategy
 

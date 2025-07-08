@@ -19,6 +19,7 @@ help:
 	@echo "  down               - Stop and remove all containers"
 	@echo "  start              - Start existing containers"
 	@echo "  stop               - Stop running containers"
+	@echo "  release            - Puh tags for release"
 	@echo ""
 	@echo "🚀  PIPELINE EXECUTION:"
 	@echo "  install        - Complete setup: request API token, create .env, build (in parallel), start, and run pipeline"
@@ -85,7 +86,10 @@ install:
 	@echo "📝 Creating .env file..."
 	@while [ -z "$$token" ]; do \
 		echo "Please enter your API token:"; \
+		stty -echo; \
 		read -p "API Token: " token; \
+		stty echo; \
+		echo; \
 		if [ -z "$$token" ]; then \
 			echo "❌ Token cannot be empty. Please try again."; \
 		fi; \
@@ -116,7 +120,7 @@ coverage:
 
 ## Run pylint for code quality checks
 lint:
-	docker compose exec app pylint --rcfile=.pylintrc --ignore=tests .
+	docker compose exec app pylint --rcfile=./pylintrc --ignore=tests .
 
 ## Format code using Black formatter
 format:
@@ -142,3 +146,7 @@ shell:
 ## Make a ZIP from the current project
 zip:
 	zip -r armis_project.zip . -x '*.git*' '*.idea*' '*.mypy_cache*' '*.pytest_cache*'
+
+# Push tags for release
+release:
+	git tag -f v0.0.1 && git push --force origin v0.0.1

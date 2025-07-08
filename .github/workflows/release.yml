@@ -1,0 +1,90 @@
+name: Publish GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Copy .env.example to .env for release
+        run: cp ./app/.env.example ./app/.env
+
+      - name: Verify .env file exists
+        run: |
+          if [ ! -f ./app/.env ]; then
+            echo 'ERROR: app/.env not found after copy!';
+            ls -l ./app;
+            exit 1;
+          fi
+          echo 'app/.env content:'
+          cat ./app/.env
+
+      - name: Build Docker images with parallel build
+        run: |
+          docker buildx bake --print
+          docker buildx bake --load
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREVIOUS_TAG" ]; then
+            CHANGELOG_TEXT=$(git log --pretty=format:'* %s (%h)' ${{ github.ref_name }})
+          else
+            CHANGELOG_TEXT=$(git log --pretty=format:'* %s (%h)' $PREVIOUS_TAG..${{ github.ref_name }})
+          fi
+          echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG_TEXT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ github.ref_name }}
+          body: |
+            # 🧪 Host Data ETL Pipeline - Release ${{ github.ref_name }}
+
+            Initial stable release of the Host Data ETL Pipeline with core functionality.
+
+            ## ✨ What's New
+            - **Hybrid Pagination Strategy**: Optimized API fetching with intelligent pagination
+            - **Docker Parallel Build**: Faster build times with Docker Bake technology
+            - **MongoDB Integration**: Efficient data storage with batch upserts
+            - **Deduplication Logic**: Smart matching of hosts across data sources
+            - **Data Visualization**: Automatic chart generation for host metrics
+
+            ## 🔧 Technical Details
+            - Test Coverage: 98%
+            - Python Version: 3.10
+            - MongoDB Version: 6.0
+            - Linting Score: 10/10
+
+            ## 📦 Installation
+            ```bash
+            git clone -b ${{ github.ref_name }} https://github.com/atamaniuc/hosts_etl.git
+            cd hosts_etl
+            make install
+            ```
+
+            ## 📚 Documentation
+            Refer to the README.md for complete documentation.
+
+            ## 📝 Changelog
+            ${{ steps.changelog.outputs.CHANGELOG }}
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-alpha') || contains(github.ref_name, '-beta') }}

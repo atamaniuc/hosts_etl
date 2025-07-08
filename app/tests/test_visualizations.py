@@ -3,17 +3,17 @@ from unittest.mock import patch
 from visualizations.charts import ChartsVisualizer, IMAGES_DIR
 
 
-# Создаем класс для мокирования IMAGES_DIR
+# Create class for mocking IMAGES_DIR
 class MockPathObject:
     def __init__(self):
         self.path = "visualizations/images"
 
     def mkdir(self, parents=False, exist_ok=False):
-        # Метод для создания директории
+        # Method for creating directory
         return None
 
     def __truediv__(self, other):
-        # Поддержка оператора / для создания путей
+        # Support for / operator for creating paths
         return f"{self.path}/{other}"
 
 
@@ -52,7 +52,7 @@ def test_normalize_os_name():
 @patch("visualizations.charts.collection.find")
 def test_create_os_distribution_chart(mock_find, mock_savefig, mock_close):
     """Test OS distribution chart creation"""
-    # Мок объекта collection.find для возврата тестовых данных
+    # Mock collection.find object to return test data
     mock_find.return_value = [
         {"os": "Amazon Linux 2", "source": "qualys"},
         {"os": "Windows Server 2019", "source": "crowdstrike"},
@@ -178,5 +178,5 @@ def test_chart_file_creation(mock_find, mock_savefig, mock_close):
         args, kwargs = call
         assert kwargs.get("dpi") == 300
         assert kwargs.get("bbox_inches") == "tight"
-        # Проверяем, что имя файла содержит ожидаемое расширение
+        # Check that filename contains expected extension
         assert str(args[0]).endswith(".png")
