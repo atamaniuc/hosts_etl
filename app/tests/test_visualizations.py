@@ -1,6 +1,20 @@
 from datetime import datetime, timedelta
 from unittest.mock import patch
-from visualizations.charts import ChartsVisualizer
+from visualizations.charts import ChartsVisualizer, IMAGES_DIR
+
+
+# Создаем класс для мокирования IMAGES_DIR
+class MockPathObject:
+    def __init__(self):
+        self.path = "visualizations/images"
+
+    def mkdir(self, parents=False, exist_ok=False):
+        # Метод для создания директории
+        return None
+
+    def __truediv__(self, other):
+        # Поддержка оператора / для создания путей
+        return f"{self.path}/{other}"
 
 
 @patch("visualizations.charts.collection.find")
@@ -32,14 +46,13 @@ def test_normalize_os_name():
     assert vis.normalize_os_name(None) == "Unknown"
 
 
-@patch("visualizations.charts.collection.find")
-@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.IMAGES_DIR", new=MockPathObject())
 @patch("visualizations.charts.plt.close")
-@patch("visualizations.charts.os.makedirs")
-def test_create_os_distribution_chart(
-    mock_makedirs, mock_close, mock_savefig, mock_find
-):
+@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.collection.find")
+def test_create_os_distribution_chart(mock_find, mock_savefig, mock_close):
     """Test OS distribution chart creation"""
+    # Мок объекта collection.find для возврата тестовых данных
     mock_find.return_value = [
         {"os": "Amazon Linux 2", "source": "qualys"},
         {"os": "Windows Server 2019", "source": "crowdstrike"},
@@ -52,7 +65,6 @@ def test_create_os_distribution_chart(
     # Check that chart creation was called
     mock_savefig.assert_called()
     mock_close.assert_called()
-    mock_makedirs.assert_called_with("visualizations/images", exist_ok=True)
 
     # Check OS normalization results
     assert result["by_os"]["Linux"] == 1
@@ -60,13 +72,11 @@ def test_create_os_distribution_chart(
     assert result["by_os"]["macOS"] == 1
 
 
-@patch("visualizations.charts.collection.find")
-@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.IMAGES_DIR", new=MockPathObject())
 @patch("visualizations.charts.plt.close")
-@patch("visualizations.charts.os.makedirs")
-def test_create_source_distribution_chart(
-    mock_makedirs, mock_close, mock_savefig, mock_find
-):
+@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.collection.find")
+def test_create_source_distribution_chart(mock_find, mock_savefig, mock_close):
     """Test source distribution chart creation"""
     mock_find.return_value = [
         {"os": "Linux", "source": "qualys"},
@@ -86,13 +96,11 @@ def test_create_source_distribution_chart(
     assert result["by_source"]["crowdstrike"] == 1
 
 
-@patch("visualizations.charts.collection.find")
-@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.IMAGES_DIR", new=MockPathObject())
 @patch("visualizations.charts.plt.close")
-@patch("visualizations.charts.os.makedirs")
-def test_create_host_freshness_chart(
-    mock_makedirs, mock_close, mock_savefig, mock_find
-):
+@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.collection.find")
+def test_create_host_freshness_chart(mock_find, mock_savefig, mock_close):
     """Test host freshness chart creation"""
     # Create test data with old and recent hosts
     old_date = (datetime.now() - timedelta(days=60)).strftime("%Y-%m-%dT%H:%M:%S")
@@ -147,11 +155,11 @@ def test_invalid_date_handling(mock_find):
     assert result["recent_hosts"] == 0
 
 
-@patch("visualizations.charts.collection.find")
-@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.IMAGES_DIR", new=MockPathObject())
 @patch("visualizations.charts.plt.close")
-@patch("visualizations.charts.os.makedirs")
-def test_chart_file_creation(mock_makedirs, mock_close, mock_savefig, mock_find):
+@patch("visualizations.charts.plt.savefig")
+@patch("visualizations.charts.collection.find")
+def test_chart_file_creation(mock_find, mock_savefig, mock_close):
     """Test that chart files are created with correct parameters"""
     mock_find.return_value = [{"os": "Linux", "source": "qualys"}]
 
@@ -170,4 +178,5 @@ def test_chart_file_creation(mock_makedirs, mock_close, mock_savefig, mock_find)
         args, kwargs = call
         assert kwargs.get("dpi") == 300
         assert kwargs.get("bbox_inches") == "tight"
-        assert ".png" in args[0]
+        # Проверяем, что имя файла содержит ожидаемое расширение
+        assert str(args[0]).endswith(".png")

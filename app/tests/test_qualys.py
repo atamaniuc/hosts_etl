@@ -1,5 +1,5 @@
-from fetchers.qualys import QualysFetcher
 from fetchers.base import BaseFetcher
+from fetchers.qualys import QualysFetcher
 
 
 def test_qualys_fetcher_init():

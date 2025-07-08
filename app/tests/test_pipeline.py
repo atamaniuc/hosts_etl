@@ -1,5 +1,5 @@
-from pipeline.etl_pipeline import ETLPipeline
 from fetchers.base import BaseFetcher
+from pipeline.etl_pipeline import ETLPipeline
 from processors.base import BaseProcessor
 from storage.base import BaseStorage
 from visualizations.base import BaseVisualizer

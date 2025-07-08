@@ -9,3 +9,4 @@ black
 mypy
 types-requests
 pydevd_pycharm
+ipython

@@ -37,6 +37,11 @@ jobs:
           export API_TOKEN=dummy
           export MONGO_URI=mongodb://mongo:27017
           PYTHONPATH=app pipenv run pytest -v app/tests/
+      - name: Run tests with coverage (pipenv)
+        run: |
+          export API_TOKEN=dummy
+          export MONGO_URI=mongodb://mongo:27017
+          PYTHONPATH=app pipenv run pytest --cov=app --cov-report=term-missing app/tests/
 
   docker-test:
     runs-on: ubuntu-latest
@@ -54,3 +59,5 @@ jobs:
         run: cp app/.env.example app/.env
       - name: Run tests in Docker
         run: docker compose run --rm app pytest -v tests/
+      - name: Run tests with coverage in Docker
+        run: docker compose run --rm app pytest --cov=app --cov-report=term-missing tests/

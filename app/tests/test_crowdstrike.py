@@ -1,5 +1,5 @@
-from fetchers.crowdstrike import CrowdstrikeFetcher
 from fetchers.base import BaseFetcher
+from fetchers.crowdstrike import CrowdstrikeFetcher
 
 
 def test_crowdstrike_fetcher_init():

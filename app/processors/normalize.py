@@ -1,12 +1,24 @@
+"""Host normalization processor."""
+
 from typing import List, Dict, Any
 from processors.base import BaseProcessor
 
 
 class HostNormalizer(BaseProcessor):
+    """Normalizes host data from different sources to unified format."""
+
     @staticmethod
     def normalize_hosts(
         qualys_data: List[Dict[str, Any]], crowdstrike_data: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
+        """
+        Normalize Qualys and Crowdstrike data to unified host format.
+        Args:
+            qualys_data: List of Qualys host dicts.
+            crowdstrike_data: List of Crowdstrike host dicts.
+        Returns:
+            List of normalized host dicts.
+        """
         normalized: List[Dict[str, Any]] = []
 
         for item in qualys_data:
@@ -34,7 +46,13 @@ class HostNormalizer(BaseProcessor):
         return normalized
 
     def process(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Process raw data from multiple sources and normalize it"""
+        """
+        Process raw data from multiple sources and normalize it.
+        Args:
+            data: List of raw host dicts.
+        Returns:
+            List of normalized host dicts.
+        """
         qualys_data: List[Dict[str, Any]] = []
         crowdstrike_data: List[Dict[str, Any]] = []
 

@@ -1,3 +1,5 @@
+"""Deduplication processor for host data."""
+
 import logging
 from typing import List, Dict, Any, Optional
 from processors.base import BaseProcessor
@@ -6,10 +8,16 @@ logger = logging.getLogger(__name__)
 
 
 class DeduplicationProcessor(BaseProcessor):
-    """Processor for deduplicating host data based on IP address."""
+    """Processor for deduplicating host data based on (ip, hostname)."""
 
     def process(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Deduplicate hosts based on (ip, hostname) and return unique hosts."""
+        """
+        Deduplicate hosts based on (ip, hostname) and return unique hosts.
+        Args:
+            data: List of host dictionaries.
+        Returns:
+            List of unique hosts.
+        """
         if not data:
             logger.info("📭 No data to deduplicate")
             return []
@@ -50,12 +58,11 @@ class DeduplicationProcessor(BaseProcessor):
                 )
 
         logger.info(
-            "✅ Deduplication completed: %d -> %d hosts (%d duplicates removed)",
+            "✅ Deduplication completed: %d -> %d unique hosts (%d duplicates removed)",
             len(data),
             len(unique_hosts),
             duplicates_count,
         )
-
         if duplicates:
             logger.info("🔑 Duplicate keys: %s", duplicates)
 

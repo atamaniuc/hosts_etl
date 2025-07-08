@@ -4,7 +4,7 @@
 # that processes host data from Qualys and Crowdstrike APIs with hybrid pagination.
 
 # Declare all targets as phony (not real files)
-.PHONY: help build up down start stop install run test coverage lint format type-check check-all-linters logs shell
+.PHONY: help build up down start stop install run test coverage lint format type-check check-all-linters logs shell zip
 
 # 📖 Help Command
 
@@ -28,10 +28,11 @@ help:
 	@echo "  coverage       - Run tests with coverage report"
 	@echo ""
 	@echo "🔍  CODE QUALITY AND LINTING:"
-	@echo "  lint           - Run pylint for code quality checks"
-	@echo "  format         - Format code using Black formatter"
-	@echo "  type-check     - Run mypy for type checking"
+	@echo "  lint              - Run pylint for code quality checks"
+	@echo "  format            - Format code using Black formatter"
+	@echo "  type-check        - Run mypy for type checking"
 	@echo "  check-all-linters - Run all code quality checks: format, lint, and type-check"
+	@echo "  zip 		    - Make a ZIP from the current project"
 	@echo ""
 	@echo "📊  MONITORING AND DEBUGGING:"
 	@echo "  logs           - View real-time application and db logs"
@@ -95,17 +96,17 @@ install:
 
 ## Run all unit tests with verbose output
 test:
-	docker compose exec app pytest -sv
+	docker compose exec -e PYTHONPATH=/app app pytest -sv
 
 ## Run tests with coverage report
 coverage:
-	docker compose exec app pytest --cov=app --cov-report=term-missing
+	docker compose exec -e PYTHONPATH=/app app pytest --cov=. --cov-report=term-missing
 
 # 🔍 Code Quality and Linting Commands
 
 ## Run pylint for code quality checks
 lint:
-	docker compose exec app pylint .
+	docker compose exec app pylint --rcfile=.pylintrc --ignore=tests .
 
 ## Format code using Black formatter
 format:
@@ -127,3 +128,7 @@ logs:
 ## Open interactive shell in the app container
 shell:
 	docker compose exec app /bin/bash
+
+## Make a ZIP from the current project
+zip:
+	zip -r armis_project.zip . -x '*.git*' '*.idea*' '*.mypy_cache*' '*.pytest_cache*'

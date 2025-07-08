@@ -1,5 +1,6 @@
 import os
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import Dict, Any
 import matplotlib.pyplot as plt
 
@@ -10,6 +11,10 @@ from visualizations.base import BaseVisualizer
 client: MongoClient = MongoClient(os.getenv("MONGO_URI", "mongodb://mongo:27017"))
 db = client["hosts_db"]
 collection = db["hosts"]
+
+# Define the base directory for storing images
+# Using Path to handle directory structure correctly regardless of OS
+IMAGES_DIR = Path("visualizations/images")
 
 
 class ChartsVisualizer(BaseVisualizer):
@@ -102,9 +107,11 @@ class ChartsVisualizer(BaseVisualizer):
         plt.axis("equal")
 
         # Ensure directory exists
-        os.makedirs("visualizations/images", exist_ok=True)
+        IMAGES_DIR.mkdir(parents=True, exist_ok=True)
         plt.savefig(
-            "visualizations/images/os_distribution.png", dpi=300, bbox_inches="tight"
+            IMAGES_DIR / "os_distribution.png",
+            dpi=300,
+            bbox_inches="tight",
         )
         plt.close()
 
@@ -123,10 +130,8 @@ class ChartsVisualizer(BaseVisualizer):
         plt.axis("equal")
 
         # Ensure directory exists
-        os.makedirs("visualizations/images", exist_ok=True)
-        plt.savefig(
-            "visualizations/images/host_age_pie.png", dpi=300, bbox_inches="tight"
-        )
+        IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+        plt.savefig(IMAGES_DIR / "host_age_pie.png", dpi=300, bbox_inches="tight")
         plt.close()
 
     def _create_source_distribution_chart(self, source_counts: Dict[str, int]) -> None:
@@ -141,9 +146,9 @@ class ChartsVisualizer(BaseVisualizer):
         plt.axis("equal")
 
         # Ensure directory exists
-        os.makedirs("visualizations/images", exist_ok=True)
+        IMAGES_DIR.mkdir(parents=True, exist_ok=True)
         plt.savefig(
-            "visualizations/images/source_distribution.png",
+            IMAGES_DIR / "source_distribution.png",
             dpi=300,
             bbox_inches="tight",
         )

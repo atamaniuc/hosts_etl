@@ -1,6 +1,6 @@
 # 🧪 Host Data ETL Pipeline
 
-A robust Python ETL pipeline that processes host data from Qualys and Crowdstrike APIs with hybrid pagination, deduplication, and MongoDB storage.
+A simple Python ETL pipeline that processes host data from `Qualys` and `Crowdstrike` APIs with "hybrid" pagination, deduplication, and MongoDB storage.
 
 ## 🚀 Quick Start
 
@@ -57,45 +57,16 @@ Run `make help` to see all available commands with descriptions.
 
 ## 🚀 Hybrid Pagination Strategy
 
-### Why This Approach
+- API supports only `limit=1` and `limit=2`, returns 500 for higher values.
+- With `limit=2`, last host can be skipped.
+- Hybrid approach: use `limit=2` for most pages, then `limit=1` for the last host.
+- Result: all hosts fetched with minimal requests and robust error handling.
 
-The API has specific limitations that required to implement a **hybrid pagination strategy**:
-
-1. **API Limitations:**
-   - Only supports `limit=1` and `limit=2` values
-   - Returns error 500 for `limit=3` and above
-   - With `limit=2`, the last host gets "skipped" due to pagination logic
-
-2. **Performance vs Completeness Trade-off:**
-   - `page_size=1`: Gets all hosts but requires 7 HTTP requests per source
-   - `page_size=2`: Fast but misses the last host (only 6 hosts)
-   - **Hybrid approach**: Best of both worlds
-
-### How It Works
-
-```python
-# 1. Start with page_size=2 for optimal performance
-params = {"skip": 0, "limit": 2}  # Gets hosts 1-2
-params = {"skip": 2, "limit": 2}  # Gets hosts 3-4  
-params = {"skip": 4, "limit": 2}  # Gets hosts 5-6
-
-# 2. When API returns "invalid skip/limit combo" error
-# 3. Make one final request with page_size=1
-params = {"skip": 6, "limit": 1}  # Gets host 7
-```
-
-**Results:**
-- ✅ **7 hosts per source** (complete data)
-- ✅ **4 HTTP requests per source** (optimal performance)
-- ✅ **Robust error handling** for API edge cases
-
-### Performance Comparison
-
-| Strategy | Requests per Source | Hosts Retrieved | Performance |
-|----------|-------------------|-----------------|-------------|
-| `page_size=1` | 7 | 7 | Slow |
-| `page_size=2` | 3 | 6 | Fast but incomplete |
-| **Hybrid** | **4** | **7** | **Optimal** ✅ |
+| Strategy      | Requests | Hosts | Performance |
+|--------------|----------|-------|-------------|
+| page_size=1  | 7        | 7     | Slow        |
+| page_size=2  | 3        | 6     | Fast, incomplete |
+| **Hybrid**   | **4**    | **7** | **Optimal** |
 
 ## 🧱 Architecture Overview
 
@@ -137,40 +108,10 @@ params = {"skip": 6, "limit": 1}  # Gets host 7
 
 ## 📊 Pipeline Architecture
 
-The pipeline implements a hybrid pagination strategy to handle API limitations:
-
-### 🔄 Pipeline Steps
-
-#### 1. **Extract** - Fetch data from APIs
-- **Qualys API**: Fetches 7 hosts using hybrid pagination (4 requests)
-- **Crowdstrike API**: Fetches 7 hosts using hybrid pagination (4 requests)
-- **Total**: 14 hosts fetched from both sources
-
-#### 2. **Transform** - Normalize and deduplicate data
-
-**Normalization:**
-- **Field mapping**: Converts different field names to standard format
-  - `address` → `ip`
-  - `dnsHostName` → `hostname`
-  - `os` → `os`
-- **Data cleaning**: Removes duplicates, handles missing values
-- **Source tagging**: Adds `source: "qualys"` or `source: "crowdstrike"`
-
-**Deduplication:**
-- **Composite key**: Uses `(ip, hostname)` to identify unique hosts
-- **Strategy**: Keeps the most recent data when duplicates found
-- **Result**: 14 hosts → 8 unique hosts (6 duplicates removed)
-
-#### 3. **Load** - Store to MongoDB
-- **Upsert logic**: Updates existing hosts or inserts new ones
-- **Indexing**: Creates indexes on `ip` and `hostname` for fast queries
-- **Storage**: Saves normalized and deduplicated data
-
-#### 4. **Visualize** - Generate charts and statistics
-- **OS Distribution**: Linux (75%), Windows (12.5%), macOS (12.5%)
-- **Source Distribution**: Qualys (87.5%), Crowdstrike (12.5%)
-- **Host Freshness**: Old hosts (>30 days) vs recent hosts
-- **Output**: PNG charts saved to `app/visualizations/images/`
+1. **Extract**: Fetch hosts from Qualys & Crowdstrike using hybrid pagination.
+2. **Transform**: Normalize to unified schema, deduplicate by (ip, hostname).
+3. **Load**: Batch upsert to MongoDB (bulk_write, index).
+4. **Visualize**: Generate PNG charts (OS, source, freshness).
 
 ## 🧪 Testing
 
@@ -212,46 +153,10 @@ make check-all-linters
 
 ## 🚀 Scalability Plan
 
-This system is designed to scale horizontally and handle millions of host records across multiple providers.
-
-### 1. **Extract Phase**
-✅ Implemented:
-- **Hybrid pagination strategy** for optimal performance
-- Token-based auth
-- Robust error handling for API edge cases
-
-🟡 To scale:
-- Async fetching (`httpx.AsyncClient`)
-- Message queues for decoupling (`Kafka`, `RabbitMQ`)
-- Rate-limiting and retry logic
-
-### 2. **Transform Phase**
-✅ Implemented:
-- Field-based normalization
-- Deduplication logic using composite key (`ip`, `hostname`)
-
-🟡 To scale:
-- Batch processing
-- Parallel normalization with thread pools
-- MongoDB aggregation-based deduplication
-
-### 3. **Load Phase**
-✅ Implemented:
-- `upsert` logic for safe merges
-- Indexes on key fields for fast querying
-
-🟡 To scale:
-- MongoDB sharded cluster
-- Buffered or streaming insert layer
-
-### 4. **Visualization**
-✅ Implemented:
-- Static charts (matplotlib)
-
-🟡 To scale:
-- Pre-aggregated stats storage
-- Scheduled chart generation
-- Dashboard integration (e.g. Grafana/Metabase)
+- **Extract**: To scale: async fetching, message queues, rate limiting.
+- **Transform**: To scale: batch processing, parallel normalization, aggregation.
+- **Load**: To scale: sharding, buffered/streaming insert.
+- **Visualization**: To scale: pre-aggregation, scheduled jobs, dashboards.
 
 ## ✅ Completed Features
 
@@ -260,6 +165,7 @@ This system is designed to scale horizontally and handle millions of host record
 - [x] **Implement hybrid pagination strategy**
 - [x] Deduplicate and merge records
 - [x] Store to MongoDB with upserts
+- [x] **Batch upsert to MongoDB (bulk_write)**
 - [x] Create indexes for key fields
 - [x] Generate visualizations (OS & freshness)
 - [x] Unit tests with `pytest`
